@@ -1,7 +1,63 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import 'reset-css';
 
-const Carousel = ({ children, showingSlideCardNum, itemGap, buttonSizeOnBothSide }) => {
+const DEFAULT_SHOWING_CARD_NUM = 4;
+const DEFAULT_ITEM_GAP = '36px';
+const DEFAULT_BUTTON_SIZE_ON_BOTH_SIDE = '25px';
+const items = [
+  {
+    id: 1,
+    content: '1',
+  },
+  {
+    id: 2,
+    content: '2',
+  },
+  {
+    id: 3,
+    content: '3',
+  },
+  {
+    id: 4,
+    content: '4',
+  },
+  {
+    id: 5,
+    content: '5',
+  },
+  {
+    id: 6,
+    content: '6',
+  },
+  {
+    id: 7,
+    content: '7',
+  },
+  {
+    id: 8,
+    content: '8',
+  },
+  {
+    id: 9,
+    content: '9',
+  },
+  {
+    id: 10,
+    content: '10',
+  },
+  {
+    id: 11,
+    content: '11',
+  },
+];
+
+const Carousel = ({
+  children,
+  showingSlideCardNum = DEFAULT_SHOWING_CARD_NUM,
+  itemGap = DEFAULT_ITEM_GAP,
+  buttonSizeOnBothSide = DEFAULT_BUTTON_SIZE_ON_BOTH_SIDE,
+}) => {
   const [slidingSize, setSlidingSize] = useState(0);
   const [isMoving, setIsMoving] = useState(false);
 
@@ -19,7 +75,7 @@ const Carousel = ({ children, showingSlideCardNum, itemGap, buttonSizeOnBothSide
       <CarouselButton
         showingSlideCardNum={showingSlideCardNum}
         handleClickSlide={handleClickSlide}
-        cardNum={children.length}
+        cardNum={children?.length || items.length}
         isMoving={isMoving}
         buttonSizeOnBothSide={buttonSizeOnBothSide}
       />
@@ -30,7 +86,7 @@ const Carousel = ({ children, showingSlideCardNum, itemGap, buttonSizeOnBothSide
           handleTransitionEnd={handleTransitionEnd}
           itemGap={itemGap}
         >
-          {children}
+          {children ? children : items.map(({ id, content }) => <StyledChildrenItem key={`item-${id}`}>{content}</StyledChildrenItem>)}
         </ItemContainer>
       </StyledWrapper>
     </StyledContainer>
@@ -191,6 +247,16 @@ const StyledLeftButton = styled(StyledButton)`
 const StyledRightButton = styled(StyledButton)`
   font-size: ${({ buttonSizeOnBothSide }) => buttonSizeOnBothSide};
   right: ${({ buttonSizeOnBothSide }) => -Number(buttonSizeOnBothSide.split('px')[0]) - 10}px;
+`;
+
+/**Default children Style*/
+const StyledChildrenItem = styled.div`
+  background: #f7ebfa;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 140px;
+  height: 150px;
+  border-radius: 8px;
 `;
 
 export default Carousel;
