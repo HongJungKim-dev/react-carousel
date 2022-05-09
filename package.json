@@ -1,10 +1,15 @@
 {
-  "name": "react-carousel",
+  "name": "@eden-kim/react-carousel",
   "description": "carousel component for react",
   "version": "0.0.1",
   "module": "dist/Carousel.js",
   "main": "dist/Carousel.js",
-  "private": true,
+  "private": false,
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
+  },
   "dependencies": {
     "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "13.2.0",
@@ -20,7 +25,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "publish:npm": "rm -rf dist && mkdir dist && babel src/lib -d dist --copy-files"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +45,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/cli": "7.17.10",
+    "@babel/preset-react": "7.16.7"
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Carousel from './components/Carousel';
+import Carousel from './lib/Carousel';
 
 const showingSlideCardNum = 5;
 const itemGap = '36px';
