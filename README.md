@@ -29,8 +29,8 @@ const CarouselSample = () => {
   return (
     <StyledContainer>
       <Carousel showingSlideCardNum={showingSlideCardNum} itemGap={itemGap} buttonSizeOnBothSide={buttonSizeOnBothSide}>
-        {items.map(({ id, content }) => (
-          <StyledItem key={`item-${id}`}>{content}</StyledItem>
+        {items.map((item) => (
+          <StyledItem key={`content-${item}`}>{item}</StyledItem>
         ))}
       </Carousel>
     </StyledContainer>
